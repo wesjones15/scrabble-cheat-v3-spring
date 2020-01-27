@@ -31,8 +31,8 @@ public class WordFilter {
     public ArrayList<String> filterWordsByUnusedLetters(ArrayList<String> words, String letters) {
         ArrayList<String> unused = buildListOfUnusedLetters(letters);
         ArrayList<String> filtered = new ArrayList<>();
+        int underscoreCount = getUnderScoreCount(letters);
         for (String word : words) {
-            int underscoreCount = getUnderScoreCount(letters);
             int unusedCount = 0;
             for (String letter : unused) {
                 if (word.contains(letter)) {
@@ -77,16 +77,9 @@ public class WordFilter {
                 int countInQuery = getCharCount(letters, letter);
                 delta += (countInQuery < countInWord) ? (countInWord - countInQuery) : 0;
             }
-            // MAKE JUDGEMENT AND ADD OR EXCLUDE WORD
-            if (delta <= underscoreCount) filtered.add(word);
-
+            if (delta <= underscoreCount)
+                filtered.add(word);
         }
-
-
-        // if _ present in letters
-        //      for each word:
-        //          track delta of extra unused letters
-        //          keep word if delta - (# of _) == 0;
         return filtered;
     }
 

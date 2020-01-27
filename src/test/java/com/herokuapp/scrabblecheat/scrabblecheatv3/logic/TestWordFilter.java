@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class TestWordFilter {
     @Test
@@ -13,6 +12,7 @@ public class TestWordFilter {
         WordFilter wordFilter = new WordFilter();
         String letters = "WHISKEY";
         ArrayList<String> out = wordFilter.getScrabbleWordsFromLetters(letters);
+        Assert.assertEquals(82, out.size());
         for (int i = 0; i < out.size(); i++) {
             System.out.println(out.get(i));
         }
@@ -23,11 +23,22 @@ public class TestWordFilter {
         WordFilter wordFilter = new WordFilter();
         String letters = "APP_DE";
         ArrayList<String> out = wordFilter.getScrabbleWordsFromLetters(letters);
+        Assert.assertEquals(434, out.size());
         for (int i = 0; i < out.size(); i++) {
             System.out.println(out.get(i));
         }
     }
 
+    @Test
+    public void testGetScrabbleWordsFromLetters3() {
+        WordFilter wordFilter = new WordFilter();
+        String letters = "_____";
+        ArrayList<String> out = wordFilter.getScrabbleWordsFromLetters(letters);
+        Assert.assertEquals(20007, out.size());
+        for (int i = 0; i < out.size(); i++) {
+            System.out.println(out.get(i));
+        }
+    }
 
     @Test
     public void testGetScrabbleWordList1() {
@@ -138,8 +149,10 @@ public class TestWordFilter {
         WordFilter wordFilter = new WordFilter();
         String letters = "APP_DE";
         ArrayList<String> words = arrayListOf("APPA","PAPA","APP","AAAF","ADAPT","ADDED","AAPDED","DEEP","PAD","DIP","DIPPA");
+
         ArrayList<String> expected = arrayListOf("APPA","PAPA","APP","DEEP","PAD","DIP","DIPPA");
         ArrayList<String> actual = wordFilter.filterWordsByLetterFrequency(words, letters);
+
         System.out.println("expected\tactual");
         System.out.println(expected.size() + "\t\t" + actual.size());
         for (int i = 0; i < expected.size(); i++) {

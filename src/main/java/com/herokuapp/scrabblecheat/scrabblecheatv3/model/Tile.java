@@ -6,6 +6,20 @@ public class Tile {
     private Boolean doubleWord;
     private Boolean doubleLetter;
 
+    public Tile() {
+        this.tripleWord = false;
+        this.tripleLetter = false;
+        this.doubleWord = false;
+        this.doubleLetter = false;
+    }
+
+    public Tile(Boolean tripleWord, Boolean tripleLetter, Boolean doubleWord, Boolean doubleLetter) {
+        this.tripleWord = tripleWord;
+        this.tripleLetter = tripleLetter;
+        this.doubleWord = doubleWord;
+        this.doubleLetter = doubleLetter;
+    }
+
     public Boolean getTripleWord() {
         return tripleWord;
     }

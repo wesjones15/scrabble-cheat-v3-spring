@@ -1,6 +1,8 @@
 package com.herokuapp.scrabblecheat.scrabblecheatv3.service;
 
+import com.herokuapp.scrabblecheat.scrabblecheatv3.logic.LogicService;
 import com.herokuapp.scrabblecheat.scrabblecheatv3.model.Query;
+import com.herokuapp.scrabblecheat.scrabblecheatv3.model.Result;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,8 +12,10 @@ import java.util.Map;
 
 @Service
 public class ScrabbleService {
-    public Map<String, Integer> getThreeBestScoringWords(Query input) {
-        return null;
+    public ResponseEntity<Result> getThreeBestScoringWords(Query input) {
+        LogicService logic = new LogicService();
+        Result result = logic.getWords(input);
+        return new ResponseEntity<Result>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<String> testThatItsWorking() {
